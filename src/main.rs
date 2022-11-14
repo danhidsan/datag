@@ -2,7 +2,7 @@ use clap::Parser;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
-struct Args {
+struct DatagArgs {
     #[command(subcommand)]
     data_type: DataType,
 }
@@ -59,18 +59,83 @@ enum IdAction {
         cif: bool,
     },
     Validate {
-        #[arg(long)]
-        nif: String,
 
-        #[arg(long)]
-        nie: String,
+        string_to_validate: String,
 
-        #[arg(long)]
-        cif: String,
+        #[arg(long, required(false))]
+        nif: bool,
+
+        #[arg(long, required(false))]
+        nie: bool,
+
+        #[arg(long, required(false))]
+        cif: bool,
     },
 }
 
+
 fn main() {
-    let args = Args::parse();
-    println!("Hello world!");
+    let args = DatagArgs::parse();
+    match args.data_type {
+        DataType::Id { action } => {
+            match action {
+               IdAction::Generate { nif, nie, cif } => {
+                    if nif {
+                        println!("NIF created");
+                    } else if nie {
+                        println!("NIE created");
+                    } else if cif {
+                        println!("CIF created");
+                    } else {
+                        println!("error: you must select id type")
+                    }
+               }
+               IdAction::Validate { nif, nie, cif, string_to_validate} => {
+
+                    if nif {
+                        println!("{}", string_to_validate);
+                        println!("nif")
+                    } else if nie {
+                        println!("{}", string_to_validate);
+                        println!("nie")
+                    } else if cif {
+                        println!("{}", string_to_validate);
+                        println!("cif")
+                    } else {
+                        println!("error: select validation type")
+                    }
+
+               } 
+            }
+        }
+        DataType::Vehicle { plate, tourist_plate, motorcycle_plate, historic_plate, trailer_plate, special_plate } => {
+            if plate {
+                println!("plate created")
+            } else if tourist_plate {
+                println!("tourist plate created")
+            } else if motorcycle_plate {
+                println!("motorcycle plate")
+            } else if historic_plate {
+                println!("historic plate created")
+            } else if trailer_plate {
+                println!("trailer plate created")
+            } else if special_plate {
+                println!("special plate created")
+            } else {
+                println!("error: you must select vehicle type")
+            }
+        }
+        DataType::GeneratePassword { characters, uppercase_characters, strange_characters, char_number } => {
+            if characters {
+                println!("password contains chars")
+            }
+            if uppercase_characters {
+                println!("password contains uppercase chars")
+            }
+            if strange_characters {
+                println!("password contains strange characters")
+            }
+            println!("char number {}", char_number)
+        }
+    }
 }
