@@ -1,5 +1,9 @@
 use clap::Parser;
 
+mod id;
+
+use id::{generate_nif, generate_nie, generate_cif};
+
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 struct DatagArgs {
@@ -81,11 +85,11 @@ fn main() {
             match action {
                IdAction::Generate { nif, nie, cif } => {
                     if nif {
-                        println!("NIF created");
+                        generate_nif();
                     } else if nie {
-                        println!("NIE created");
+                        generate_nie();
                     } else if cif {
-                        println!("CIF created");
+                        generate_cif();
                     } else {
                         println!("error: you must select id type")
                     }
