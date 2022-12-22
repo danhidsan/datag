@@ -85,11 +85,11 @@ fn main() {
             match action {
                IdAction::Generate { nif, nie, cif } => {
                     if nif {
-                        generate_nif();
+                        println!("{}", generate_nif());
                     } else if nie {
-                        generate_nie();
+                        println!("{}", generate_nie());
                     } else if cif {
-                        generate_cif();
+                        println!("{}", generate_cif());
                     } else {
                         println!("error: you must select id type")
                     }
