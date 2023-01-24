@@ -2,7 +2,7 @@ use clap::Parser;
 
 mod id;
 
-use id::{generate_nif, generate_nie, generate_cif};
+use id::{generate_nif, generate_nie, generate_cif, validate_nif, validate_nie, validate_cif};
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -97,13 +97,13 @@ fn main() {
                IdAction::Validate { nif, nie, cif, string_to_validate} => {
 
                     if nif {
-                        println!("{}", string_to_validate);
+                        println!("{}", validate_nif(string_to_validate));
                         println!("nif")
                     } else if nie {
-                        println!("{}", string_to_validate);
+                        println!("{}", validate_nie(string_to_validate));
                         println!("nie")
                     } else if cif {
-                        println!("{}", string_to_validate);
+                        println!("{}", validate_cif(string_to_validate));
                         println!("cif")
                     } else {
                         println!("error: select validation type")

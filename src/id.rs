@@ -1,4 +1,5 @@
 use rand::{self, Rng};
+use regex::Regex;
 
 const NIF_RAND_START: i32 = 10000000;
 const NIF_RAND_END: i32 = 100000000;
@@ -130,5 +131,35 @@ pub fn generate_cif() -> String {
     }
 
     res_cif
+}
+
+pub fn validate_nif(nif: String) -> bool {
+    let re = Regex::new(r"^(\d{8})([A-Z])$").unwrap();
+
+    if !re.is_match(nif.as_str()) {
+        return false;
+    }
+
+    true
+}
+
+pub fn validate_nie(nie: String) -> bool {
+    let re = Regex::new(r"^[XYZ]\d{7,8}[A-Z]$").unwrap();
+
+    if !re.is_match(nie.as_str()) {
+        return false;
+    }
+
+    true
+}
+
+pub fn validate_cif(cif: String) -> bool {
+    let re = Regex::new(r"^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$").unwrap();
+
+    if !re.is_match(cif.as_str()) {
+        return false;
+    }
+
+    true
 }
 
