@@ -97,8 +97,11 @@ fn main() {
                IdAction::Validate { nif, nie, cif, string_to_validate} => {
 
                     if nif {
-                        println!("{}", validate_nif(string_to_validate));
-                        println!("nif")
+                        if validate_nif(string_to_validate) {
+                            println!("Valid!!");
+                        } else {
+                            println!("Not valid!");
+                        }
                     } else if nie {
                         println!("{}", validate_nie(string_to_validate));
                         println!("nie")
