@@ -146,7 +146,7 @@ pub fn validate_nif(nif: String) -> bool {
 
     let computed_letter = calculate_letter(&number_parsed);
 
-    return computed_letter.to_string() == letter_substring
+    return computed_letter.to_string() == letter_substring;
 }
 
 pub fn validate_nie(nie: String) -> bool {
@@ -156,7 +156,13 @@ pub fn validate_nie(nie: String) -> bool {
         return false;
     }
 
-    true
+    let number_substring = nie[1..8].to_string();
+    let letter_substring = nie[8..].to_string();
+    let number_parsed = number_substring.parse::<i32>().unwrap();
+
+    let computed_letter = calculate_letter(&number_parsed);
+
+    return computed_letter.to_string() == letter_substring;    
 }
 
 pub fn validate_cif(cif: String) -> bool {

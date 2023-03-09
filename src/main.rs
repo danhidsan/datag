@@ -100,11 +100,14 @@ fn main() {
                         if validate_nif(string_to_validate) {
                             println!("Valid!!");
                         } else {
-                            println!("Not valid!");
+                            println!("Not valid!!");
                         }
                     } else if nie {
-                        println!("{}", validate_nie(string_to_validate));
-                        println!("nie")
+                        if validate_nie(string_to_validate) {
+                            println!("Valid!!");
+                        } else {
+                            println!("Not valid!!")
+                        }
                     } else if cif {
                         println!("{}", validate_cif(string_to_validate));
                         println!("cif")
