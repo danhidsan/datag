@@ -172,6 +172,23 @@ pub fn validate_cif(cif: String) -> bool {
         return false;
     }
 
-    true
+    let first_letter_substring = cif[..1].to_string();
+    let number_substring = cif[1..8].to_string();
+    let last_digit_substring = cif[8..].to_string();
+    let province_substring = cif[1..3].to_string();
+
+    let (computed_letter, computed_digit_d) = cif_control_letter(&number_substring);
+
+    let computed_final_digit: String;
+    
+    if "PQRSW".contains(&first_letter_substring) || province_substring == "00" {
+        // control digit should be letter
+        computed_final_digit = computed_letter.to_string(); 
+    } else {
+        // control digit should be number
+        computed_final_digit = computed_digit_d.to_string();
+    }
+
+    return last_digit_substring == computed_final_digit;
 }
 
