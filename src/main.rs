@@ -120,30 +120,30 @@ fn main() {
         }
         DataType::Vehicle { plate, tourist_plate, motorcycle_plate, historic_plate, trailer_plate, special_plate } => {
             if plate {
-                println!("plate created")
+                println!("plate creation will be soon")
             } else if tourist_plate {
-                println!("tourist plate created")
+                println!("tourist plate creation will be soon")
             } else if motorcycle_plate {
-                println!("motorcycle plate")
+                println!("motorcycle plate creation will be soon")
             } else if historic_plate {
-                println!("historic plate created")
+                println!("historic plate creation will be soon")
             } else if trailer_plate {
-                println!("trailer plate created")
+                println!("trailer plate creation will be soon")
             } else if special_plate {
-                println!("special plate created")
+                println!("special plate creation will be soon")
             } else {
                 println!("error: you must select vehicle type")
             }
         }
         DataType::GeneratePassword { characters, uppercase_characters, strange_characters, char_number } => {
             if characters {
-                println!("password contains chars")
+                println!("password creation will be soon")
             }
             if uppercase_characters {
-                println!("password contains uppercase chars")
+                println!("password creation will be soon")
             }
             if strange_characters {
-                println!("password contains strange characters")
+                println!("password creation will be soon")
             }
             println!("char number {}", char_number)
         }
